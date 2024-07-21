@@ -1,0 +1,26 @@
+#to check if all okey
+python process.py
+dir data
+
+
+#to start training
+darknet.exe detector train data/obj.data cfg/yolov4-tiny-custom.cfg yolov4-tiny.conv.29 -dont_show -map
+or
+darknet.exe detector train data/obj.data cfg/yolov4-tiny-custom.cfg yolov4-tiny.conv.29 -map
+
+#to continue from previous
+darknet.exe detector train data/obj.data cfg/yolov4-tiny-custom.cfg /mydrive/yolov4-tiny/training/yolov4-tiny-custom_last.weights -map
+
+
+
+#image prediction
+darknet.exe detector test data\obj.data cfg\yolov4-tiny-custom.cfg ..\training\yolov4-tiny-custom_best.weights ..\..\mask_test_images\test1.jpg -thresh 0.3
+
+
+#imShow('predictions.jpg')
+yolov4-tiny-custom
+
+
+#live webcam
+
+darknet.exe detector demo data/obj.data cfg/yolov4-tiny-custom.cfg ..\training\yolov4-tiny-custom_best.weights -thresh 0.5
